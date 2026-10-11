@@ -106,8 +106,19 @@ df = pd.DataFrame({
 })
 
 
-X = df
-y = price
+
+# Save the dataset as a CSV file
+df["price"] = price
+
+os.makedirs("data", exist_ok=True)
+df.to_csv("data/house_prices.csv", index=False)
+
+print("Dataset saved successfully!")
+
+# Separate input data and target price
+X = df.drop(columns=["price"])
+y = df["price"]
+
 
 
 # ==============================
